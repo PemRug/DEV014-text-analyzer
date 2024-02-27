@@ -16,7 +16,7 @@ h1 {
   }
 
   body {
-    background-image: url("https://pixabay.com/get/gb25e636fd5ab87d2a21a029298f7648c0ede09c29cd636f0dc42f8a18f052594fad31f624be495c43e4f9f6261f48733.jpg");
+    background-color: #642576;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
@@ -51,11 +51,45 @@ li {
     margin: 5px;
     
 }
-.contador {
+.contadorP {
     text-align: center;
     border-radius: 10px;
     width: 250px;
     height: 20px;
+}
+
+.contadorC {
+  text-align: center;
+  border-radius: 10px;
+  width: 250px;
+  height: 20px;
+}
+
+.contadorN {
+  text-align: center;
+  border-radius: 10px;
+  width: 250px;
+  height: 20px;
+}
+
+.contadorCSE {
+  text-align: center;
+  border-radius: 10px;
+  width: 250px;
+  height: 20px;
+}
+
+.contadorS {
+  text-align: center;
+  border-radius: 10px;
+  width: 250px;
+  height: 20px;
+}
+.contador {
+  text-align: center;
+  border-radius: 10px;
+  width: 250px;
+  height: 20px;
 }
 
   .grid-container{
