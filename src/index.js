@@ -24,12 +24,15 @@ boton.addEventListener('click', () => {
 function getWordCount(inputText) {
     let texto = inputText.value;
     texto= texto.trim();
-    texto = texto.replace(/\d/g, "");
-    let separadorPalabras = texto.split(/\b\w+\b/g);
-    let contadorPalabras = -1;
+    let separadorPalabras = texto.split(" ");
+    let contadorPalabras = 0;
   
     separadorPalabras.forEach(() => {
-      contadorPalabras++;
+      if (!isNaN(inputText)) {
+       if (typeof inputText !== "symbol") {
+        contadorPalabras++;
+       }
+      }
     });
   
     const contador1 = document.querySelector('ul li.contadorP');
