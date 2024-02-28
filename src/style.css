@@ -85,14 +85,14 @@ li {
   width: 250px;
   height: 20px;
 }
-.contador {
+.contadorPR {
   text-align: center;
   border-radius: 10px;
   width: 250px;
   height: 20px;
 }
 
-  .grid-container{
+.grid-container{
     display: grid;
     color: #fff;
     margin-left: 180px;
@@ -109,7 +109,20 @@ textarea[name="user-input"] {
     border: none;
     text-align: justify;
 }
+
+#reset-button {
+  margin-top: 20px;
+  background-color: #c7c7c7;
+  color: #006400;
+  border-color: #333;
+}
   
+#reset-button:hover {
+  background-color: #FFE669;
+  border-color: #642576;
+  color: black;
+}
+
   /*footer */
   
   footer {
