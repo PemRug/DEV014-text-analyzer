@@ -1,111 +1,95 @@
-const analyzer = {  
+const analyzer = {
   getWordCount: (text) => {
     //TODO: esta función debe retornar el recuento de palabras que se encuentran en el parámetro `text` de tipo `string`.
-    let texto = text.value.trim();
-  let contadorPalabras = 0;
-  const caracteresInvalidos = ["..",".","#",",",";",":","?","!","¡","¿","'","...","-","_"];
-  let palabrasTipoString = [];
-  let numerosTipoString = [];
+    text.trim();
+    let contadorPalabras = 0;
+    const caracteresInvalidos = ["..", ".", "#", ",", ";", ":", "?", "!", "¡", "¿", "'", "...", "-", "_"];
+    const palabrasTipoString = [];
+    const numerosTipoString = [];
+    const palabras = text.split(" ");
 
-  const palabras = texto.split(" ");
-
-  for (let i = 0; i < palabras.length; i++) {
-    if (!caracteresInvalidos.includes(palabras[i])) {
-      if (!isNaN(palabras[i])) {
-        numerosTipoString.push(palabras[i]);
-      } else {
-        palabrasTipoString.push(palabras[i]);
+    for (let i = 0; i < palabras.length; i++) {
+      if (!caracteresInvalidos.includes(palabras[i])) {
+        if (!isNaN(palabras[i])) {
+          numerosTipoString.push(palabras[i]);
+        } else {
+          palabrasTipoString.push(palabras[i]);
+        }
       }
     }
-  }
-  contadorPalabras = palabrasTipoString.length;
+    contadorPalabras = palabrasTipoString.length;
 
-    const contador1 = document.querySelector('ul li.contadorP');
-    contador1.textContent = `Palabras: ${contadorPalabras}`;
-
-    console.log(contador1.textContent);
+    return contadorPalabras;
   },
   getCharacterCount: (text) => {
-    //TODO: esta función debe retornar el recuento de caracteres que se encuentran en el parámetro `text` de tipo `string`.
-    let texto = text.value;
-    let contadorCaracteres = texto.length;
-  
-    const contador2 = document.querySelector('ul li.contadorC');
-    if (contador2 !== null) {
-      contador2.textContent = `Caracteres: ${contadorCaracteres}`;
-    } else {
-      console.error("Error: Elemento con clase 'contadorC' no encontrado");
+    //TODO: esta función debe retornar el recuento de caracteres que se encuentran en el parámetro `text` de tipo `string`.  
+
+    if (typeof text === 'string') {
+      const contadorCaracteres = text.length;
+
+      return contadorCaracteres;
     }
-    console.log(contador2.textContent);
   },
+
   getCharacterCountExcludingSpaces: (text) => {
     //TODO: esta función debe retornar el recuento de caracteres excluyendo espacios y signos de puntuación que se encuentran en el parámetro `text` de tipo `string`.
-    let texto = text.value;
     let contadorCaracteresSinEspacio = 0;
-    
-    for (let i=0; i < texto.length; i++) {
-      if (texto.charAt(i) !== " ") {
+    const caracteresInvalidos = ["..", ".", "#", ",", ";", ":", "?", "!", "¡", "¿", "'", "...", "-", "_"];
+
+    for (let i = 0; i < text.length; i++) {
+      if (text.charAt(i) !== " " && !caracteresInvalidos.includes(text.charAt(i))) {
         contadorCaracteresSinEspacio++;
       }
     }
-    
-    const contador3 = document.querySelector('ul li.contadorCSE');
-      if (contador3 !== null) { 
-      contador3.textContent = `Caracteres sin espacios: ${contadorCaracteresSinEspacio}`;
-    } else {
-      console.error("Error: Elemento con clase 'contadorCSE' no encontrado");
-    }
-    console.log(contador3.textContent);
     return contadorCaracteresSinEspacio;
   },
-  getAverageWordLength: (text) => {    
+  getAverageWordLength: (text) => {
     //TODO: esta función debe retornar la longitud media de palabras que se encuentran en el parámetro `text` de tipo `string`.
-    let texto = text.value.trim();
-    let palabras = texto.split(" ");
+    text = text.trim();
+    const palabras = text.split(" ");
     let largoTotal = 0;
 
     for (let i = 0; i < palabras.length; i++) {
       largoTotal += palabras[i].length;
     }
 
-    const promedioTotal = (largoTotal / palabras.length).toFixed(2);
+    const promedioTotal = parseFloat((largoTotal / palabras.length).toFixed(2));
 
-    let contador6 = document.querySelector('ul li.contadorPR');
-  if (contador6 !== null) {
-    contador6.textContent = `Promedio de longitud:: ${promedioTotal}`;
-  } else {
-    console.error("Error: Elemento 'Promedio de longitud:' no encontrado");
-  }
-  console.log(contador6.textContent); 
+    return promedioTotal;
   },
   getNumberCount: (text) => {
     //TODO: esta función debe retornar cúantos números se encuentran en el parámetro `text` de tipo `string`.
-    let texto = text.value;
     const numeros = [];
-  
-    for (let i = 0; i < texto.length; i++) {
-      if (["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "."].includes(texto[i])) {
+    const num = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "."]
+
+    for (let i = 0; i < text.length; i++) {
+      if (num.includes(text[i])) {
         let numero = "";
-        do {
-          numero += texto[i];
-          i++;
-        } while (["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "."].includes(texto[i]) && i < texto.length);
-        if (numero !== "") {
-          numeros.push(Number(numero)); 
+        const entreLetrasAntes = i > 0 && isNaN(text[i - 1]);
+        const entreLetrasDespues = i + 1 === text.length || isNaN(text[i + 1]);
+
+        if (!entreLetrasAntes && !entreLetrasDespues) {
+          do {
+            numero += text[i];
+            i++;
+          } while (num.includes(text[i]) && i < text.length);
+
+          if (numero.endsWith('.')) {
+            numero = numero.slice(0, -1);
+          }
+
+          if (!isNaN(Number(numero.trim())) && (text[i] === undefined || !isNaN(text[i]))) {
+            numeros.push(Number(numero));
+          }
+          i--;
         }
-        i--;
       }
     }
     const contadorNumeros = numeros.length;
-  
-    let contador4 = document.querySelector('ul li.contadorN');
-    if (contador4 !== null) {
-      contador4.textContent = `Números: ${contadorNumeros}`;
-    } else {
-      console.error("Error: Elemento 'Numeros' no encontrado");
-    }
-    return numeros; 
+
+    return contadorNumeros;
   },
+
   getNumberSum: (numeros) => {
     //TODO: esta función debe retornar la suma de todos los números que se encuentran en el parámetro `text` de tipo `string`.
     let suma = 0;
@@ -113,15 +97,7 @@ const analyzer = {
     for (let i = 0; i < numeros.length; i++) {
       suma += numeros[i];
     }
-  
-    let contador5 = document.querySelector('ul li.contadorS');
-    if (contador5 !== null) {
-      contador5.textContent = `Sumatoria: ${suma}`;
-    } else {
-      console.error("Error: Elemento 'sumatoriaNumeros' no encontrado");
-    }
-  
-    console.log(contador5.textContent); 
+    return suma;
   },
 };
 
