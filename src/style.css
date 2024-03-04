@@ -51,48 +51,14 @@ li {
     margin: 5px;
     
 }
-.contadorP {
+.contador {
     text-align: center;
     border-radius: 10px;
     width: 250px;
     height: 20px;
 }
 
-.contadorC {
-  text-align: center;
-  border-radius: 10px;
-  width: 250px;
-  height: 20px;
-}
-
-.contadorN {
-  text-align: center;
-  border-radius: 10px;
-  width: 250px;
-  height: 20px;
-}
-
-.contadorCSE {
-  text-align: center;
-  border-radius: 10px;
-  width: 250px;
-  height: 20px;
-}
-
-.contadorS {
-  text-align: center;
-  border-radius: 10px;
-  width: 250px;
-  height: 20px;
-}
-.contadorPR {
-  text-align: center;
-  border-radius: 10px;
-  width: 250px;
-  height: 20px;
-}
-
-.grid-container{
+#grid-container {
     display: grid;
     color: #fff;
     margin-left: 180px;
