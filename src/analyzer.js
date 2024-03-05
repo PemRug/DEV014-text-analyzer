@@ -48,6 +48,35 @@ const analyzer = {
     }
     return contadorCaracteresSinEspacio;
   },
+  getNumberCount: (text) => {
+    //TODO: esta función debe retornar cúantos números se encuentran en el parámetro `text` de tipo `string`.
+    const numeros = [];
+    const num = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "."]
+  
+    for (let i = 0; i < text.length; i++) {
+      if (num.includes(text[i])) {
+        let numero = "";
+  
+        do {
+          numero += text[i];
+          i++;
+        } while (num.includes(text[i]) && i < text.length);
+  
+        if (numero.endsWith('.')) {
+          numero = numero.slice(0, -1);
+        }
+  
+        if (!isNaN(Number(numero.trim())) && (text[i] === undefined || !isNaN(text[i]))) {
+          numeros.push(Number(numero));
+        }
+        i--;
+      }
+    }
+    const contadorNumeros = numeros.length;
+    console.log(contadorNumeros);
+    return contadorNumeros;
+  },
+  
   getAverageWordLength: (text) => {
     //TODO: esta función debe retornar la longitud media de palabras que se encuentran en el parámetro `text` de tipo `string`.
     text = text.trim();
@@ -64,35 +93,6 @@ const analyzer = {
 
     return promedioTotal;
   },
-  getNumberCount: (text) => {
-    //TODO: esta función debe retornar cúantos números se encuentran en el parámetro `text` de tipo `string`.
-    const numeros = [];
-    const num = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "."]
-
-    for (let i = 0; i < text.length; i++) {
-      if (num.includes(text[i])) {
-        let numero = "";
-
-        do {
-          numero += text[i];
-          i++;
-        } while (num.includes(text[i]) && i < text.length);
-
-        if (numero.endsWith('.')) {
-          numero = numero.slice(0, -1);
-        }
-
-        if (!isNaN(Number(numero.trim())) && (text[i] === undefined || !isNaN(text[i]))) {
-          numeros.push(Number(numero));
-        }
-        i--;
-      }
-    }
-    const contadorNumeros = numeros.length;
-    console.log(contadorNumeros);
-    return contadorNumeros;
-  },
-
   getNumberSum: (text) => {
     //TODO: esta función debe retornar la suma de todos los números que se encuentran en el parámetro `text` de tipo `string`.
     const numbers = [];
