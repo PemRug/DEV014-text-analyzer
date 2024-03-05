@@ -1,6 +1,6 @@
 # Analizador de Texto
   
-  ## Herramienta para analizar y obtener información útil de tus textos
+Herramienta para analizar y obtener información útil de tus textos
 
 ## Funcionalidades:
 

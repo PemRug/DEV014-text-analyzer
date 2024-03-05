@@ -15,7 +15,7 @@ text.addEventListener('input', () => {
   const contadorPalabras = analyzer.getWordCount(text.value);
   const contador1 = document.querySelector('li.contador:nth-of-type(1)');
   contador1.textContent = `Palabras: ${contadorPalabras}`;
-  
+
   // Contador de Caracteres
   const contadorCaracteres = analyzer.getCharacterCount(text.value);
   const contador2 = document.querySelector('li.contador:nth-of-type(2)');
